@@ -1,5 +1,5 @@
 import { ActionReducerMap } from '@ngrx/store';
-import { pizzaReducer, PizzaState } from './store-pizza';
+import { pizzasReducer, PizzaState } from './store-pizzas';
 import { toppingsReducer, ToppingsState } from './store-toppings';
 
 export interface ProductsState {
@@ -8,6 +8,6 @@ export interface ProductsState {
 }
 
 export const productsReducers: ActionReducerMap<ProductsState> = {
-  pizzas: pizzaReducer,
+  pizzas: pizzasReducer,
   toppings: toppingsReducer,
 };

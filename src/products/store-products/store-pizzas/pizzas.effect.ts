@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
-import { Go } from '../../../app/store-app';
+import { Navigate } from '../../../app/store-app/store-router';
 import { PizzasService } from '../../services';
 import {
   CREATE_PIZZA,
@@ -23,10 +23,10 @@ import {
   UpdatePizza,
   UpdatePizzaFail,
   UpdatePizzaSuccess,
-} from './pizza.action';
+} from './pizzas.action';
 
 @Injectable()
-export class PizzaEffect {
+export class PizzasEffect {
   constructor(
     private actions$: Actions,
     private pizzasService: PizzasService,
@@ -63,7 +63,7 @@ export class PizzaEffect {
   createPizzaSuccess$ = this.actions$.pipe(
     ofType(CREATE_PIZZA_SUCCESS),
     map((action: CreatePizzaSuccess) => action.payload),
-    map(pizza => new Go({ path: ['/products', pizza.id] })),
+    map(pizza => new Navigate({ path: ['/products', pizza.id] })),
   );
 
   @Effect()
@@ -97,6 +97,6 @@ export class PizzaEffect {
   @Effect()
   handlePizzaSuccess$ = this.actions$.pipe(
     ofType(UPDATE_PIZZA_SUCCESS, REMOVE_PIZZA_SUCCESS),
-    map(() => new Go({ path: ['/products'] })),
+    map(() => new Navigate({ path: ['/products'] })),
   );
 }

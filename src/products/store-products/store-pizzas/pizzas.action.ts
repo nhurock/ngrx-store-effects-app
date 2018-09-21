@@ -92,7 +92,7 @@ export class RemovePizzaSuccess implements Action {
 }
 
 // action types
-export type PizzaAction =
+export type PizzasAction =
   | LoadPizzas
   | LoadPizzasFail
   | LoadPizzasSuccess

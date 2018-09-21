@@ -13,7 +13,7 @@ import {
   getSelectedPizza,
   RemovePizza,
   UpdatePizza,
-} from '../../store-products/store-pizza';
+} from '../../store-products/store-pizzas';
 import {
   getAllToppings,
   VisualizeToppings,

@@ -4,7 +4,7 @@ import {
   LOAD_TOPPINGS_FAIL,
   LOAD_TOPPINGS_SUCCESS,
   ToppingsAction,
-  VISUALISE_TOPPINGS,
+  VISUALIZE_TOPPINGS,
 } from './toppings.action';
 
 export interface ToppingsState {
@@ -60,7 +60,7 @@ export function toppingsReducer(
       };
     }
 
-    case VISUALISE_TOPPINGS: {
+    case VISUALIZE_TOPPINGS: {
       return {
         ...state,
         selectedToppings: action.payload
