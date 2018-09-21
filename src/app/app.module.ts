@@ -34,10 +34,10 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(ROUTES),
     StoreModule.forRoot(appReducers, { metaReducers }),
+    RouterModule.forRoot(ROUTES),
     EffectsModule.forRoot(appEffects),
-    StoreRouterConnectingModule,
+    StoreRouterConnectingModule.forRoot(),
     environment.production ? [] : StoreDevtoolsModule.instrument(),
   ],
   providers: [
