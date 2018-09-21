@@ -1,7 +1,7 @@
-import { createSelector } from '@ngrx/store';
-import { getAppState } from '../app.selector';
+import { RouterReducerState } from '@ngrx/router-store';
+import { createFeatureSelector } from '@ngrx/store';
+import { RouterStateUrl } from './router.model';
 
-export const getRouterState = createSelector(
-  getAppState,
-  state => state.routerReducer,
-);
+export const getRouterState = createFeatureSelector<
+  RouterReducerState<RouterStateUrl>
+>('router');

@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-import { combineReducers, Store, StoreModule } from '@ngrx/store';
+import { combineReducers, select, Store, StoreModule } from '@ngrx/store';
 import { Topping } from '../../models/topping.model';
 import { productsReducers, ProductsState } from '../products.reducer';
-import { toppingsReducer } from './toppings.reducer';
-import { getToppingsEntities } from './toppings.selector';
+import { LoadToppingsSuccess, VisualizeToppings } from './toppings.action';
+import { getSelectedToppings, getToppingsEntities } from './toppings.selector';
 
 describe('Toppings Selectors', () => {
   let store: Store<ProductsState>;
@@ -23,8 +23,7 @@ describe('Toppings Selectors', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          ...productsReducers,
-          products: combineReducers(toppingsReducer),
+          products: combineReducers(productsReducers),
         }),
       ],
     });
@@ -32,5 +31,34 @@ describe('Toppings Selectors', () => {
     spyOn(store, 'dispatch').and.callThrough();
   });
 
-  describe('getToppingsEntities', () => {});
+  describe('getToppingsEntities', () => {
+    it('should return toppings as entities', () => {
+      let result;
+      store.pipe(select(getToppingsEntities)).subscribe(value => {
+        result = value;
+      });
+
+      expect(result).toEqual({});
+
+      store.dispatch(new LoadToppingsSuccess(toppings));
+
+      expect(result).toEqual(entities);
+    });
+  });
+  describe('getSelectedToppings', () => {
+    it('should return selected toppings as ids', () => {
+      let result;
+      store.pipe(select(getSelectedToppings)).subscribe(value => {
+        result = value;
+      });
+
+      store.dispatch(new LoadToppingsSuccess(toppings));
+
+      expect(result).toEqual([]);
+
+      store.dispatch(new VisualizeToppings([1, 3]));
+
+      expect(result).toEqual([1, 3]);
+    });
+  });
 });
