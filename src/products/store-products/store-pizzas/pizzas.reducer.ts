@@ -4,10 +4,10 @@ import {
   LOAD_PIZZAS,
   LOAD_PIZZAS_FAIL,
   LOAD_PIZZAS_SUCCESS,
-  PizzaAction,
+  PizzasAction,
   REMOVE_PIZZA_SUCCESS,
   UPDATE_PIZZA_SUCCESS,
-} from './pizza.action';
+} from './pizzas.action';
 
 export interface PizzaState {
   entities: { [id: number]: Pizza };
@@ -21,9 +21,9 @@ export const initialState: PizzaState = {
   loading: false,
 };
 
-export function pizzaReducer(
+export function pizzasReducer(
   state = initialState,
-  action: PizzaAction,
+  action: PizzasAction,
 ): PizzaState {
   switch (action.type) {
     case LOAD_PIZZAS: {

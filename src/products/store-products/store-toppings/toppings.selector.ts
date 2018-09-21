@@ -5,10 +5,9 @@ export const getToppingsState = createSelector(
   getProductsState,
   state => state.toppings,
 );
-export const getToppingsEntities = createSelector(
-  getToppingsState,
-  state => state.entities,
-);
+export const getToppingsEntities = createSelector(getToppingsState, state => {
+  return state.entities;
+});
 export const getAllToppings = createSelector(getToppingsEntities, entities => {
   return Object.keys(entities).map(id => entities[id]);
 });

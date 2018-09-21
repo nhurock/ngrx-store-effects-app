@@ -1,4 +1,4 @@
-import { PizzaEffect } from './store-pizza';
+import { PizzasEffect } from './store-pizzas';
 import { ToppingsEffect } from './store-toppings';
 
-export const productsEffects: any[] = [PizzaEffect, ToppingsEffect];
+export const productsEffects: any[] = [PizzasEffect, ToppingsEffect];

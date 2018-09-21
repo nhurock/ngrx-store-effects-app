@@ -11,9 +11,11 @@ import { MetaReducer, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { storeFreeze } from 'ngrx-store-freeze';
 import { environment } from '../environments/environment';
+import { AppRouterStateSerializer } from './app-router-state-serializer';
 
 import { AppComponent } from './app.component';
-import { AppEffect, appReducers, CustomSerializer } from './store-app';
+import { appEffects } from './store-app/app.effect';
+import { appReducers } from './store-app/app.reducer';
 
 export const ROUTES: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'products' },
@@ -34,14 +36,14 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
     BrowserAnimationsModule,
     RouterModule.forRoot(ROUTES),
     StoreModule.forRoot(appReducers, { metaReducers }),
-    EffectsModule.forRoot([AppEffect]),
+    EffectsModule.forRoot(appEffects),
     StoreRouterConnectingModule,
     environment.production ? [] : StoreDevtoolsModule.instrument(),
   ],
   providers: [
     {
       provide: RouterStateSerializer,
-      useClass: CustomSerializer,
+      useClass: AppRouterStateSerializer,
     },
   ],
   bootstrap: [AppComponent],

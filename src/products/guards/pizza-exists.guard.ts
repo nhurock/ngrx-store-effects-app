@@ -7,7 +7,7 @@ import {
   getPizzasEntities,
   getPizzasLoaded,
   LoadPizzas,
-} from '../store-products/store-pizza';
+} from '../store-products/store-pizzas';
 
 @Injectable()
 export class PizzaExistsGuard implements CanActivate {

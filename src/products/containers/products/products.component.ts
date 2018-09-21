@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { Pizza } from '../../models/pizza.model';
 import { ProductsState } from '../../store-products';
-import { getAllPizzas } from '../../store-products/store-pizza';
+import { getAllPizzas } from '../../store-products/store-pizzas';
 
 @Component({
   selector: 'app-products',
